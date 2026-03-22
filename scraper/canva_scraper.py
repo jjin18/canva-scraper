@@ -1,6 +1,6 @@
 """
 Canva Collaboration Pain Scraper
-Run locally: python canva_scraper.py
+Run locally: python scraper/canva_scraper.py (from repo root)
 Opens results in browser as a clean page with direct quotes + source links.
 
 Install first:
@@ -1150,7 +1150,9 @@ html += """
 </body>
 </html>"""
 
-_out_dir = os.path.dirname(os.path.abspath(__file__))
+# Write HTML/JSON to repo root (parent of this folder) for Vercel static hosting.
+_scraper_dir = os.path.dirname(os.path.abspath(__file__))
+_out_dir = os.path.dirname(_scraper_dir)
 _out_index = os.path.join(_out_dir, "index.html")
 _out_legacy = os.path.join(_out_dir, "canva_quotes.html")
 for path in (_out_index, _out_legacy):

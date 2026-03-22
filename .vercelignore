@@ -1,0 +1,2 @@
+# Keep Python off the Vercel build — this project is static HTML at the repo root.
+scraper/
