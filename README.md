@@ -9,7 +9,7 @@ Python scraper that pulls Canva-related reviews from several sources and builds 
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r scraper/requirements.txt
 set PYTHONUTF8=1
 python canva_scraper.py
 ```
@@ -20,11 +20,11 @@ The script writes **`index.html`**, **`canva_quotes.html`** (same content), and 
 
 ## Deploy on Vercel
 
-This repo is a **static site**: Vercel serves `index.html` at the root.
+This repo is a **static site**: Vercel serves `index.html` at the root. Python deps live under **`scraper/`** (not the repo root) so Vercel does **not** treat the project as a Python server — a root `requirements.txt` triggers the “No python entrypoint” error.
 
 1. Push this folder to a **new GitHub repository** (see below).
 2. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → **Import** your GitHub repo.
-3. Use defaults: **Framework Preset** “Other”, no build command, **Root** `.` (or leave empty).
+3. **Framework preset:** Other (or “Other” / no framework). **Build Command:** leave empty. **Output:** default / `.`
 4. **Deploy**. Your site URL will be `https://<project>.vercel.app`.
 
 After you re-run the scraper and commit updated `index.html` / `canva_quotes.json`, push to `main` — Vercel will redeploy automatically if Git integration is enabled.
