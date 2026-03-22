@@ -1,4 +1,6 @@
-# Canva collaboration pain — quote scraper
+# canva-scraper
+
+Canva collaboration pain — quote scraper.
 
 Python scraper that pulls Canva-related reviews from several sources and builds a **searchable static page** (`index.html`) with quotes, sources, and filters.
 
