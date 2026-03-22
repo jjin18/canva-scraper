@@ -6,6 +6,21 @@ Python scraper that pulls Canva-related reviews from several sources and builds 
 
 ## Run locally
 
+**Use the folder that contains `README.md` and `scraper/`** (for you that is usually `canva-collab-scraper`). If you run commands from `C:\Users\jiahu` or your Desktop, Python will not find `scraper/requirements.txt`.
+
+**Windows (PowerShell):**
+
+```powershell
+cd C:\Users\jiahu\canva-collab-scraper
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r scraper/requirements.txt
+$env:PYTHONUTF8 = "1"
+python scraper\canva_scraper.py
+```
+
+**Same steps in bash (after `cd` into the repo):**
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
