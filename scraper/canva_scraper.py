@@ -1150,9 +1150,11 @@ html += """
 </body>
 </html>"""
 
-# Write HTML/JSON to repo root (parent of this folder) for Vercel static hosting.
+# Write HTML/JSON under ../site/ (Vercel Root Directory = site — no Python on deploy).
 _scraper_dir = os.path.dirname(os.path.abspath(__file__))
-_out_dir = os.path.dirname(_scraper_dir)
+_repo_root = os.path.dirname(_scraper_dir)
+_out_dir = os.path.join(_repo_root, "site")
+os.makedirs(_out_dir, exist_ok=True)
 _out_index = os.path.join(_out_dir, "index.html")
 _out_legacy = os.path.join(_out_dir, "canva_quotes.html")
 for path in (_out_index, _out_legacy):

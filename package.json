@@ -1,5 +1,0 @@
-{
-  "name": "canva-scraper",
-  "private": true,
-  "description": "Static site (pre-built index.html). Scraper lives in scraper/ and is ignored by Vercel."
-}

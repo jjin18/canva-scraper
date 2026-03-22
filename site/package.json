@@ -1,0 +1,5 @@
+{
+  "name": "canva-scraper-site",
+  "private": true,
+  "description": "Static HTML only — no build step. Python scraper lives in ../scraper/ (local only)."
+}

@@ -2,7 +2,7 @@
 
 Canva collaboration pain — quote scraper.
 
-Python scraper that pulls Canva-related reviews from several sources and builds a **searchable static page** (`index.html`) with quotes, sources, and filters.
+Python scraper that pulls Canva-related reviews from several sources and builds a **searchable static page** (`site/index.html`) with quotes, sources, and filters.
 
 ## Run locally
 
@@ -31,18 +31,21 @@ python scraper/canva_scraper.py
 
 On macOS/Linux, use `source .venv/bin/activate` and `export PYTHONUTF8=1`.
 
-The script writes **`index.html`**, **`canva_quotes.html`** (same content), and **`canva_quotes.json`**. Set `CANVA_NO_BROWSER=1` to skip opening a browser.
+The script writes **`site/index.html`**, **`site/canva_quotes.html`** (same content), and **`site/canva_quotes.json`**. Set `CANVA_NO_BROWSER=1` to skip opening a browser.
 
-## Deploy on Vercel
+## Deploy on Vercel (static only — no Python)
 
-This repo is a **static site**: Vercel serves `index.html` at the root. The Python scraper lives entirely under **`scraper/`**, and **`.vercelignore`** excludes that folder from the deployment upload so Vercel never runs the Python builder (which would require `main.py` / `app.py`, etc.).
+Vercel only deploys the **`site/`** folder. There is **no** build step and **no** Python on Vercel; the scraper runs on your machine only.
 
-1. Push this folder to a **new GitHub repository** (see below).
-2. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → **Import** your GitHub repo.
-3. **Framework preset:** Other (or “Other” / no framework). **Build Command:** leave empty. **Output:** default / `.`
-4. **Deploy**. Your site URL will be `https://<project>.vercel.app`.
+1. Import the GitHub repo in [Vercel](https://vercel.com).
+2. Open **Project → Settings → General**.
+3. Set **Root Directory** to **`site`** (required — this avoids “No python entrypoint” from the rest of the repo).
+4. **Framework preset:** Other. **Build Command:** leave empty. **Install Command:** leave empty (or `echo skip`).
+5. Save and **Redeploy**.
 
-After you re-run the scraper and commit updated `index.html` / `canva_quotes.json`, push to `main` — Vercel will redeploy automatically if Git integration is enabled.
+Your live URL serves `site/index.html` as `/`.
+
+After you re-run the scraper, commit and push changes under **`site/`** so the deployment updates.
 
 ## Push to GitHub (first time)
 
@@ -63,7 +66,7 @@ Create an empty repo on GitHub first (**without** a README, so you can push clea
 ## Updating the live site
 
 1. Run `python scraper/canva_scraper.py` from the repo root.
-2. Commit changes to `index.html`, `canva_quotes.html`, and `canva_quotes.json`.
+2. Commit changes under **`site/`** (`index.html`, `canva_quotes.html`, `canva_quotes.json`).
 3. `git push` — Vercel redeploys on push.
 
 ## License
